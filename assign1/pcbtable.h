@@ -20,7 +20,10 @@ private:
     // TODO: add your private member variables here
     // choose a data structure for the PCBTable. 
     // You can use an array of PCB pointers, e.g. vector<PCB *>. 
-
+    PCB** table;
+    int capacity;
+    int count;
+    
 public:
     /**
      * @brief Construct a new PCBTable object of the given size (number of PCBs)

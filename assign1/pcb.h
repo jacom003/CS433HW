@@ -82,7 +82,8 @@ public:
      * @param state
      */
     void setState(ProcState state) {
-        // TODO: add your code here
+        // Assign the new state to the state attribute
+        this -> state = state;
     }
 
     /**
@@ -90,7 +91,13 @@ public:
      * @param priority
      */
     void setPriority(unsigned int priority) {
-        // TODO: add your code here
+        // Validates that the priority is within the acceptable range (1-50) before assigning it to the priority attribute.
+        /*if (priority >= 1 && priority <= 50){
+            this->priority = priority;
+        } else {
+            cout << "Priority value out of range (1-50)." << endl;
+        } */
+       this->priority = priority;
     }
 
     /**

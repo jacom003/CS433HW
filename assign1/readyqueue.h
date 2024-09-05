@@ -20,18 +20,33 @@ class ReadyQueue {
 private:
     // TODO: add your private member variables here
     // choose a data structure for the ReadyQueue. No STL class is allowed.
+    PCB** queue; // Array of PCB pointers
+    int capacity; // Max capacity of the queue
+    int count; // Current number of PCBs in the queue
+
+    // Helper functions for maintaining the heap property
+    void bubbleUp(int index);
+    void bubbleDown(int index);
+    int parent(int index) { return (index - 1) / 2; }
+    int leftChild(int index) { return (index * 2) + 1; }
+    int rightChild(int index) { return (index * 2) + 2; }
+    void swap(int index1, int index2);
 
 public:
     /**
      * @brief Construct a new ReadyQueue object
      *
      */
-    ReadyQueue();
+    ReadyQueue(int capacity = 500);
 
     /**
      * @brief Destructor
      */
     ~ReadyQueue();
+
+     ReadyQueue(const ReadyQueue&) = delete; // Prevent copying
+
+    ReadyQueue& operator=(const ReadyQueue&) = delete; // Prevent assignment
 
 	// You may add additional member functions, but don't change the definitions of the following four member functions.
 
@@ -54,11 +69,11 @@ public:
      *
      * @return int: the number of PCBs in the queue
      */
-	int size();
+	int size() const;
 
      /**
       * @brief Display the PCBs in the queue.
       */
-	void displayAll();
+	void displayAll() const;
 
 };

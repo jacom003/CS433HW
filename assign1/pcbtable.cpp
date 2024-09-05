@@ -14,8 +14,15 @@
  *
  * @param size: the capacity of the PCBTable
  */
-PCBTable::PCBTable(int size) {
-   // TODO: add your code here
+PCBTable::PCBTable(int size) : capacity(size), count(0) {
+   // // Allocate memory for an array of PCB pointers with the given capacity.
+    table = new PCB*[capacity];
+
+    // Initialize each element of the array to nullptr to signify that
+    // there are no PCBs currently in the table.
+    for (int i = 0; i < capacity; ++i) {
+        table[i] = nullptr;
+    }
 }
 
 /**
@@ -23,8 +30,13 @@ PCBTable::PCBTable(int size) {
  *
  */
 PCBTable::~PCBTable() {
-   // TODO: add your code here
+   // Iterate through each PCB pointer in the table and delete the allocated
+    // PCB objects to prevent memory leaks.
+    for (int i = 0; i < capacity; ++i) {
+        delete table[i];
+    }
    // Delete all the PCBs in the table
+    delete[] table;
 }
 
 /**
@@ -34,8 +46,11 @@ PCBTable::~PCBTable() {
  * @return PCB*: pointer to the PCB at index "idx"
  */
 PCB* PCBTable::getPCB(unsigned int idx) {
-    // TODO: add your code here
-    return NULL;
+    // Check if the provided index is within bounds, and return the PCB at that index; otherwise, return nullptr
+    if (idx < capacity) {
+        return table[idx];
+    }
+    return nullptr;
 }
 
 /**
@@ -44,6 +59,10 @@ PCB* PCBTable::getPCB(unsigned int idx) {
  * @param pcb: the PCB to add
  */
 void PCBTable::addPCB(PCB *pcb, unsigned int idx) {
-    // TODO: add your code here
+    // Add the PCB pointer to the table at the specified index if within bounds; otherwise, print an error message.
+    if (idx < capacity) {
+        table[idx] = pcb;
+        ++count;
+    }
     // Add a PCB pointer to the PCBTable at index idx.
 }
